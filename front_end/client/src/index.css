@@ -338,20 +338,17 @@
 /* Make the highlighted marker visually pronounced: red drop shadow, slight scale and higher stacking */
 .leaflet-marker-icon.highlighted-marker {
   transform-origin: center bottom;
-  transform: translateZ(0) scale(1.03);
-  filter: drop-shadow(0 8px 14px rgba(239,68,68,0.35));
+  transform: translateZ(0) scale(1.06) !important;
+  /* combine drop shadow and color transform on the marker element itself so it works whether
+     the class is added to the <img> or wrapping element */
+  filter: hue-rotate(-170deg) saturate(1.6) brightness(1.05) drop-shadow(0 8px 18px rgba(239,68,68,0.45)) !important;
   z-index: 9999 !important;
 }
 
-/* Ensure the img inside the marker inherits smooth rendering and no unwanted opacity overrides */
+/* Ensure the marker image is fully opaque and renders smoothly */
 .leaflet-marker-icon.highlighted-marker img {
   image-rendering: auto;
   opacity: 1 !important;
-}
-/* Use CSS filter to recolor the existing blue marker image to red on hover/selection.
-   This avoids swapping the image element (which can cause flicker or disappearance in some browsers). */
-.leaflet-marker-icon.highlighted-marker img {
-  filter: hue-rotate(-200deg) saturate(1.35) brightness(1.05) !important;
 }
 
 /* Animated gradient background */

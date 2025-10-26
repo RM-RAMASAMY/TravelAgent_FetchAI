@@ -4,9 +4,13 @@ import L from "leaflet";
 import { useEffect } from "react";
 import "leaflet/dist/leaflet.css";
 
+// Base marker SVGs as data URIs so we can swap the <img>.src directly (reliable across browsers)
+const baseBlueSvg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='48' viewBox='0 0 32 48'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%233b82f6;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%232563eb;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23grad)' stroke='%23fff' stroke-width='2' d='M16 0C7.2 0 0 7.2 0 16c0 12 16 32 16 32S32 28 32 16C32 7.2 24.8 0 16 0z'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23fff'/%3E%3C/svg%3E";
+const baseRedSvg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='48' viewBox='0 0 32 48'%3E%3Cdefs%3E%3ClinearGradient id='gradRed' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23fb7185;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23ef4444;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23gradRed)' stroke='%23fff' stroke-width='2' d='M16 0C7.2 0 0 7.2 0 16c0 12 16 32 16 32S32 28 32 16C32 7.2 24.8 0 16 0z'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23fff'/%3E%3C/svg%3E";
+
 // Fix for default marker icons in React Leaflet - no glow
 const icon = L.icon({
-  iconUrl: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='48' viewBox='0 0 32 48'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%233b82f6;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%232563eb;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23grad)' stroke='%23fff' stroke-width='2' d='M16 0C7.2 0 0 7.2 0 16c0 12 16 32 16 32S32 28 32 16C32 7.2 24.8 0 16 0z'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23fff'/%3E%3C/svg%3E",
+  iconUrl: baseBlueSvg,
   iconSize: [32, 48],
   iconAnchor: [16, 48],
   popupAnchor: [1, -42],
@@ -51,13 +55,7 @@ const transitRecommendationIcon = L.icon({
 });
 
 // Highlighted marker for hovered events - same shape/size as default icon but red colored
-const highlightedIcon = L.icon({
-  iconUrl: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='48' viewBox='0 0 32 48'%3E%3Cdefs%3E%3ClinearGradient id='gradRed' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23fb7185;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23ef4444;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23gradRed)' stroke='%23fff' stroke-width='2' d='M16 0C7.2 0 0 7.2 0 16c0 12 16 32 16 32S32 28 32 16C32 7.2 24.8 0 16 0z'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23fff'/%3E%3C/svg%3E",
-  iconSize: [32, 48],
-  iconAnchor: [16, 48],
-  popupAnchor: [1, -42],
-  className: 'highlighted-marker'
-});
+// highlightedIcon removed — we'll swap the marker <img>.src directly using the baseBlueSvg/baseRedSvg constants
 
 interface NearbyPlace {
   id: string;
@@ -315,6 +313,12 @@ export function TravelMap({ events, hoveredEvent }: TravelMapProps) {
                 if (!markerRef) return;
                 const el = markerRef.getElement?.();
                 if (!el) return;
+                // Try direct <img> swap — more reliable than swapping icon objects in some browsers
+                const img = el.querySelector?.('img') as HTMLImageElement | null;
+                if (img) {
+                  img.src = isHovered ? baseRedSvg : baseBlueSvg;
+                }
+                // Also toggle class for scale/pulse effect
                 if (isHovered) el.classList.add('highlighted-marker');
                 else el.classList.remove('highlighted-marker');
               }}
