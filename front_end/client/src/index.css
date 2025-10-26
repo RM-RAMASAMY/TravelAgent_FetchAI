@@ -1,0 +1,659 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* LIGHT MODE */
+:root {
+  --button-outline: rgba(0,0,0, .10);
+  --badge-outline: rgba(0,0,0, .05);
+
+  /* Automatic computation of border around primary / danger buttons */
+  --opaque-button-border-intensity: -8; /* In terms of percentages */
+
+  /* Backgrounds applied on top of other backgrounds when hovered/active */
+  --elevate-1: rgba(0,0,0, .03);
+  --elevate-2: rgba(0,0,0, .08);
+
+  --background: 210 4% 98%;
+
+  --foreground: 210 6% 12%;
+
+  --border: 210 6% 88%;
+
+  --card: 210 4% 96%;
+
+  --card-foreground: 210 6% 14%;
+
+  --card-border: 210 5% 91%;
+
+  --sidebar: 210 4% 94%;
+
+  --sidebar-foreground: 210 6% 16%;
+
+  --sidebar-border: 210 5% 87%;
+
+  --sidebar-primary: 204 94% 42%;
+
+  --sidebar-primary-foreground: 204 94% 98%;
+
+  --sidebar-accent: 210 8% 88%;
+
+  --sidebar-accent-foreground: 210 6% 16%;
+
+  --sidebar-ring: 204 94% 42%;
+
+  --popover: 210 5% 92%;
+
+  --popover-foreground: 210 6% 14%;
+
+  --popover-border: 210 5% 85%;
+
+  --primary: 204 94% 42%;
+
+  --primary-foreground: 204 94% 98%;
+
+  --secondary: 210 6% 86%;
+
+  --secondary-foreground: 210 6% 16%;
+
+  --muted: 210 8% 90%;
+
+  --muted-foreground: 210 6% 38%;
+
+  --accent: 210 12% 88%;
+
+  --accent-foreground: 210 6% 16%;
+
+  --destructive: 0 84% 48%;
+
+  --destructive-foreground: 0 84% 98%;
+
+  --input: 210 8% 68%;
+  --ring: 204 94% 42%;
+  --chart-1: 204 94% 38%;
+  --chart-2: 280 84% 42%;
+  --chart-3: 160 72% 36%;
+  --chart-4: 28 88% 46%;
+  --chart-5: 340 78% 44%;
+
+  --font-sans: Inter, system-ui, -apple-system, sans-serif;
+  --font-serif: Merriweather, Georgia, serif;
+  --font-mono: Menlo, monospace;
+  --radius: .75rem; /* 12px */
+  --shadow-2xs: 0px 1px 2px 0px hsl(210 6% 12% / 0.04);
+  --shadow-xs: 0px 1px 2px 0px hsl(210 6% 12% / 0.06);
+  --shadow-sm: 0px 2px 4px -1px hsl(210 6% 12% / 0.06), 0px 1px 2px -1px hsl(210 6% 12% / 0.04);
+  --shadow: 0px 4px 6px -1px hsl(210 6% 12% / 0.08), 0px 2px 4px -2px hsl(210 6% 12% / 0.05);
+  --shadow-md: 0px 6px 12px -2px hsl(210 6% 12% / 0.10), 0px 3px 6px -3px hsl(210 6% 12% / 0.08);
+  --shadow-lg: 0px 10px 20px -4px hsl(210 6% 12% / 0.12), 0px 4px 8px -4px hsl(210 6% 12% / 0.08);
+  --shadow-xl: 0px 16px 32px -6px hsl(210 6% 12% / 0.14), 0px 6px 12px -6px hsl(210 6% 12% / 0.10);
+  --shadow-2xl: 0px 24px 48px -8px hsl(210 6% 12% / 0.18);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+
+  /* Automatically computed borders - intensity can be controlled by the user by the --opaque-button-border-intensity setting */
+
+  /* Fallback for older browsers */
+  --sidebar-primary-border: hsl(var(--sidebar-primary));
+  --sidebar-primary-border: hsl(from hsl(var(--sidebar-primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  /* Fallback for older browsers */
+  --sidebar-accent-border: hsl(var(--sidebar-accent));
+  --sidebar-accent-border: hsl(from hsl(var(--sidebar-accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  /* Fallback for older browsers */
+  --primary-border: hsl(var(--primary));
+  --primary-border: hsl(from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  /* Fallback for older browsers */
+  --secondary-border: hsl(var(--secondary));
+  --secondary-border: hsl(from hsl(var(--secondary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  /* Fallback for older browsers */
+  --muted-border: hsl(var(--muted));
+  --muted-border: hsl(from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  /* Fallback for older browsers */
+  --accent-border: hsl(var(--accent));
+  --accent-border: hsl(from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  /* Fallback for older browsers */
+  --destructive-border: hsl(var(--destructive));
+  --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+}
+
+.dark {
+  --button-outline: rgba(255,255,255, .10);
+  --badge-outline: rgba(255,255,255, .05);
+
+  --opaque-button-border-intensity: 9;  /* In terms of percentages */
+
+  /* Backgrounds applied on top of other backgrounds when hovered/active */
+  --elevate-1: rgba(255,255,255, .04);
+  --elevate-2: rgba(255,255,255, .09);
+
+  --background: 210 6% 8%;
+
+  --foreground: 210 5% 92%;
+
+  --border: 210 6% 18%;
+
+  --card: 210 6% 11%;
+
+  --card-foreground: 210 5% 90%;
+
+  --card-border: 210 6% 15%;
+
+  --sidebar: 210 6% 14%;
+
+  --sidebar-foreground: 210 5% 88%;
+
+  --sidebar-border: 210 6% 19%;
+
+  --sidebar-primary: 204 94% 42%;
+
+  --sidebar-primary-foreground: 204 94% 98%;
+
+  --sidebar-accent: 210 8% 18%;
+
+  --sidebar-accent-foreground: 210 5% 88%;
+
+  --sidebar-ring: 204 94% 52%;
+
+  --popover: 210 6% 16%;
+
+  --popover-foreground: 210 5% 90%;
+
+  --popover-border: 210 6% 21%;
+
+  --primary: 204 94% 42%;
+
+  --primary-foreground: 204 94% 98%;
+
+  --secondary: 210 6% 20%;
+
+  --secondary-foreground: 210 5% 88%;
+
+  --muted: 210 8% 18%;
+
+  --muted-foreground: 210 6% 68%;
+
+  --accent: 210 12% 19%;
+
+  --accent-foreground: 210 5% 88%;
+
+  --destructive: 0 84% 48%;
+
+  --destructive-foreground: 0 84% 98%;
+
+  --input: 210 8% 32%;
+  --ring: 204 94% 52%;
+  --chart-1: 204 94% 62%;
+  --chart-2: 280 84% 68%;
+  --chart-3: 160 72% 62%;
+  --chart-4: 28 88% 64%;
+  --chart-5: 340 78% 66%;
+
+  --shadow-2xs: 0px 1px 2px 0px hsl(210 6% 2% / 0.40);
+  --shadow-xs: 0px 1px 2px 0px hsl(210 6% 2% / 0.50);
+  --shadow-sm: 0px 2px 4px -1px hsl(210 6% 2% / 0.50), 0px 1px 2px -1px hsl(210 6% 2% / 0.40);
+  --shadow: 0px 4px 6px -1px hsl(210 6% 2% / 0.60), 0px 2px 4px -2px hsl(210 6% 2% / 0.50);
+  --shadow-md: 0px 6px 12px -2px hsl(210 6% 2% / 0.70), 0px 3px 6px -3px hsl(210 6% 2% / 0.60);
+  --shadow-lg: 0px 10px 20px -4px hsl(210 6% 2% / 0.75), 0px 4px 8px -4px hsl(210 6% 2% / 0.60);
+  --shadow-xl: 0px 16px 32px -6px hsl(210 6% 2% / 0.80), 0px 6px 12px -6px hsl(210 6% 2% / 0.70);
+  --shadow-2xl: 0px 24px 48px -8px hsl(210 6% 2% / 0.85);
+
+  /* Fallback for older browsers */
+  --sidebar-primary-border: hsl(var(--sidebar-primary));
+  --sidebar-primary-border: hsl(from hsl(var(--sidebar-primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  /* Fallback for older browsers */
+  --sidebar-accent-border: hsl(var(--sidebar-accent));
+  --sidebar-accent-border: hsl(from hsl(var(--sidebar-accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  /* Fallback for older browsers */
+  --primary-border: hsl(var(--primary));
+  --primary-border: hsl(from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  /* Fallback for older browsers */
+  --secondary-border: hsl(var(--secondary));
+  --secondary-border: hsl(from hsl(var(--secondary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  /* Fallback for older browsers */
+  --muted-border: hsl(var(--muted));
+  --muted-border: hsl(from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  /* Fallback for older browsers */
+  --accent-border: hsl(var(--accent));
+  --accent-border: hsl(from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  /* Fallback for older browsers */
+  --destructive-border: hsl(var(--destructive));
+  --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+
+  /* Hide ugly search cancel button in Chrome until we can style it properly */
+  input[type="search"]::-webkit-search-cancel-button {
+    @apply hidden;
+  }
+
+  /* Placeholder styling for contentEditable div */
+  [contenteditable][data-placeholder]:empty::before {
+    content: attr(data-placeholder);
+    color: hsl(var(--muted-foreground));
+    pointer-events: none;
+  }
+
+  .no-default-hover-elevate {}
+
+  .no-default-active-elevate {}
+
+  .toggle-elevate::before,
+  .toggle-elevate-2::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    border-radius: inherit;
+    z-index: -1;
+  }
+
+  .toggle-elevate.toggle-elevated::before {
+    background-color: var(--elevate-2);
+  }
+
+  .border.toggle-elevate::before {
+    inset: -1px;
+  }
+
+  .hover-elevate:not(.no-default-hover-elevate),
+  .active-elevate:not(.no-default-active-elevate),
+  .hover-elevate-2:not(.no-default-hover-elevate),
+  .active-elevate-2:not(.no-default-active-elevate) {
+    position: relative;
+    z-index: 0;
+  }
+
+  .hover-elevate:not(.no-default-hover-elevate)::after,
+  .active-elevate:not(.no-default-active-elevate)::after,
+  .hover-elevate-2:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:not(.no-default-active-elevate)::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    border-radius: inherit;
+    z-index: 999;
+  }
+
+  .hover-elevate:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-1);
+  }
+
+  .hover-elevate-2:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-2);
+  }
+
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate-2:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
+    inset: -1px;
+  }
+}
+
+/* Advanced Animations */
+
+/* Highlighted marker animation with pulse ring */
+.highlighted-marker {
+  animation: markerPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes markerPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+/* Make the highlighted marker visually pronounced: red drop shadow, slight scale and higher stacking */
+.leaflet-marker-icon.highlighted-marker {
+  transform-origin: center bottom;
+  transform: translateZ(0) scale(1.03);
+  filter: drop-shadow(0 8px 14px rgba(239,68,68,0.35));
+  z-index: 9999 !important;
+}
+
+/* Ensure the img inside the marker inherits smooth rendering and no unwanted opacity overrides */
+.leaflet-marker-icon.highlighted-marker img {
+  image-rendering: auto;
+  opacity: 1 !important;
+}
+/* Use CSS filter to recolor the existing blue marker image to red on hover/selection.
+   This avoids swapping the image element (which can cause flicker or disappearance in some browsers). */
+.leaflet-marker-icon.highlighted-marker img {
+  filter: hue-rotate(-200deg) saturate(1.35) brightness(1.05) !important;
+}
+
+/* Animated gradient background */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient {
+  background: linear-gradient(135deg, 
+    hsl(var(--primary) / 0.05),
+    hsl(var(--chart-2) / 0.05),
+    hsl(var(--chart-1) / 0.05)
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* Floating animation for cards */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+/* Pulse ring effect for markers */
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.pulse-ring {
+  animation: pulseRing 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+/* Fade in up animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* Scale in animation */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-in {
+  animation: scaleIn 0.3s ease-out;
+}
+
+/* Glow effects removed for cleaner markers */
+
+/* Enhanced glassmorphism */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-effect {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Timeline connector animation */
+@keyframes drawLine {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}
+
+.animate-draw-line {
+  animation: drawLine 0.5s ease-out forwards;
+}
+
+/* Particle effect */
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.3;
+  }
+  75% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate(100px, -100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: hsl(var(--primary) / 0.3);
+  animation: particleFloat 4s ease-in-out infinite;
+}
+
+/* Stagger animation delays for children */
+.stagger-animation > * {
+  animation: fadeInUp 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.stagger-animation > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-animation > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-animation > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-animation > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-animation > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-animation > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger-animation > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-animation > *:nth-child(8) { animation-delay: 0.4s; }
+
+/* Border animation */
+@keyframes borderGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px hsl(var(--primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.6);
+  }
+}
+
+.border-glow {
+  animation: borderGlow 2s ease-in-out infinite;
+}
+
+/* Custom scrollbar styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* Animated background for gradients */
+.bg-size-200 {
+  background-size: 200% auto;
+}
+
+.bg-pos-100 {
+  background-position: 100% 0;
+}
+
+.hover\:bg-pos-100:hover {
+  background-position: 100% 0;
+}
+
+/* Leaflet popup custom styling */
+.leaflet-popup-content-wrapper {
+  border-radius: 12px !important;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid hsl(var(--border) / 0.5) !important;
+}
+
+.leaflet-popup-tip {
+  background: hsl(var(--card)) !important;
+  border: 1px solid hsl(var(--border) / 0.5) !important;
+}
+
+.custom-popup .leaflet-popup-content {
+  margin: 0 !important;
+}
+
+/* Animated polyline for map route */
+@keyframes dash {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+.animated-polyline {
+  animation: dash 1s linear infinite;
+}
+
+/* Clean marker styling without glow effects */
+.marker-no-glow,
+.marker-restaurant,
+.marker-hotel,
+.marker-activity,
+.marker-transit {
+  transition: transform 0.3s ease;
+}
+
+.marker-restaurant:hover,
+.marker-hotel:hover,
+.marker-activity:hover,
+.marker-transit:hover {
+  transform: scale(1.1);
+}
+
+/* Utility for better text rendering */
+.text-render-optimized {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Prevent text flicker during transitions */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Smooth text size transitions without glitches */
+.smooth-text-transition {
+  transition: font-size 1000ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: font-size;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
